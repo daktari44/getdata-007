@@ -89,12 +89,13 @@ avgtraintest <- subtt %>%
 Using the sub() and gsub() functions, the variable names are edited by:
 * Removing the () and - symbols
 * Expanding all of the abbreviations
-* Replacing the t and f with Time and Frequency, respectively
+* Replacing the t and f with time and frequency, respectively
 * correcting any additional spelling errors
 All the remaining intermediate datasets and objects are removed and only the final merged dataset left in memory.
 
 ##### 6. Save the tidy data set
 The final line of the run_analysis.R script uses the write.table() function to save the final dataset into the working directory.
+This final dataset consists of 180 observations of 68 variables.
 
 ### Discussion
 As part of this data cleaning process, several decisions were made determining what was used and what was left out in the analysis. Included in these decisions are the following:
@@ -105,7 +106,7 @@ As part of this data cleaning process, several decisions were made determining w
 * in editing the variable names for the final dataset, one abbreviation and one upper case element were not changed.
    - the standard deviation abbreviation 'std' was left as is. This is abbreviation is widely recognized in statistics and it was felt that retaining it as is did not interfere with the readability of the variable name, and prevented the creation of an unnecessarily long variable name.
    - the capital 'XYZ' characters used to denote 3-axial signals in the X, Y and Z directions were left as is to avoid confusing them with parts of the preceding words.
-   - an 'avg' prefix was added to the variable names to distinguish them from those in the raw data files and emphasis that these were an average of each value. This prefix is also widely recognized as an abbreviation for average and was retained as is to prevent the creation of a long variable name.
+   - an 'avg' prefix was added to the variable names to distinguish them from those in the raw data files and emphasize that these were an average of each value. This prefix is also widely recognized as an abbreviation for average and was retained as is to prevent the creation of a long variable name.
 * as explained in the 'README.txt' file that was included in the data folder, the values included in the dataset were normalized, therefore there are no corresponding units of measurement.
 * Finally, it was determined that to meet the purposes of this project, a wide form of the dataset was the best fit. This is because:
    - the variables being used are not the original observed values but were calculated from these initial observations. The variable names reflected the composite nature of this calculation.
