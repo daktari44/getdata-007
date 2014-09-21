@@ -1,17 +1,14 @@
 ## Getting and Cleaning Data - Course Project CodeBook
 
-
-
-
-|"subject"  |:  |:
-|"activity" |:  |:
-|"avgtimebodyaccelerometermeanX"    |:  |:
-|"avgtimebodyaccelerometermeanY"
-|"avgtimebodyaccelerometermeanZ"
-|"avgtimeGravityaccelerometermeanX"
-|"avgtimeGravityaccelerometermeanY"
-|"avgtimeGravityaccelerometermeanZ"
-|"avgtimebodyaccelerometerjerkmeanX"
+|"subject" |: The
+"activity" 
+"avgtimebodyaccelerometermeanX"    
+"avgtimebodyaccelerometermeanY"
+"avgtimebodyaccelerometermeanZ"
+"avgtimeGravityaccelerometermeanX"
+"avgtimeGravityaccelerometermeanY"
+"avgtimeGravityaccelerometermeanZ"
+"avgtimebodyaccelerometerjerkmeanX"
 "avgtimebodyaccelerometerjerkmeanY"
 "avgtimebodyaccelerometerjerkmeanZ"
 "avgtimebodygyroscopemeanX"

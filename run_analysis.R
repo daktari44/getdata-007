@@ -35,11 +35,9 @@ levels(ytrain$activity) <- activitylabels
 train <- cbind(subjecttrain, ytrain, xtrain)
 rm(subjecttrain, xtrain, ytrain)
 
-
 ## 3. Merge the test and training data into one dataset
 traintest <- rbind(train, test)
 rm(train, test, activitylabels, features, mainfolder, testfolder, trainfolder)
-
 
 ## 4. Extract the mean and std deviation values for each measurement to create the new dataset
 library(dplyr)
@@ -64,7 +62,6 @@ amend <- paste0("avg", amend)
 
 colnames(avgtraintest[3:68]) <- amend
 rm(amend, traintest, subtt)
-
 
 ## 6. save the tidy data file to the working directory
 write.table(avgtraintest, file = "avgHARtidy.txt", row.name = FALSE)

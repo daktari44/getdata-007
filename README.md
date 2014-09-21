@@ -15,7 +15,6 @@ To meet the project objectives. we are asked to provide a script that does the f
 #### Summary information on the data
 This project used data from the Human Activity Recognition Using Smartphones Dataset (Version 1.0). A full description of the experiment can be found at this site:
 http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones
-
 The downloaded data folder contained the following files:
 - *'README.txt'* : provides summary information about the experiment
 - *'features_info.txt'*: Shows information about the variables used on the feature vector.
