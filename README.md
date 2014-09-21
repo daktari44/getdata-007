@@ -54,16 +54,21 @@ This code:
 After the download, a review of the included README.txt file and a visual inspection of the downloaded files using Notepad ++ was done. This helped identify the different files in the dataset and which ones would be required to answer the fulfil the project objectives.
 
 ##### 2. Read data files into memory to create the training and test datasets.
-Creating the training and test datasets was achieved in two stages:
+Creating the training and test datasets was achieved in three stages:
 * First, the list.files() function was used to create three temporary objects that list the files and folders in the main data folder, and in the test and training folders.
 ```r 
 mainfolder <- list.files(path = "./UCI HAR Dataset", full.names = TRUE)
 testfolder <- list.files(path = "./UCI HAR Dataset/test", full.names = TRUE)
 trainfolder <- list.files(path = "./UCI HAR Dataset/train", full.names = TRUE)
 ```
+* secondly, the files with the activity labels and the variable names were used to create two character vectors.
+```r 
+activitylabels <- read.table(mainfolder[1], stringsAsFactors = FALSE)[,2]
+features <- read.table(mainfolder[2], stringsAsFactors = FALSE)[,2]
+```
    - the two files each have two columns with the first column appearing to be a numbered id column
    - therefore, for both files, only the second column is read to create two character vectors called 'activitylabels' and 'features' respectively.
-* Secondly, these lists were used to read the raw data and to create the training and test datasets. The code for creating the test dataset is copied below. A similar section of code was used to create the training dataset. 
+* finally, these lists were used to read the raw data and to create the training and test datasets. The code for creating the test dataset is copied below. A similar section of code was used to create the training dataset. 
 ```r 
 subjecttest <- read.table(testfolder[2], stringsAsFactors = FALSE, col.names = "subject")
 xtest <- read.table(testfolder[3], stringsAsFactors = FALSE, col.names = features)
