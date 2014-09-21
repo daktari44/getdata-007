@@ -35,28 +35,35 @@ The italicized and bold files were the ones selected for use in developing the t
 The 'run_analysis.R' script consists of the programmatic steps taken in the data cleaning process. It covers all the required steps listed in the project objectives though not necessarily in the order specified above. This code should produce the submitted tidy data set if it is run from the same folder as that which contains the dataset. The script is divided into several sections consistent with the overall objectives of the assignment:
 
 ##### 1. Download and unzipping of the dataset into the working directory 
-This was achieved by:
-* assigning the URL linking to the dataset to an r object (called 'datasource' in this script)
-* testing for and create if needed a data folder into which the dataset will be saved (this is not an essential step but it does help in keeping the original dataset seperate from the main working folder)
-* downloading dataset to the data folder using the download.file() function.
+The code used to achieve this is copied below:
+```r 
+datasource <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip "
+if(!file.exists("./data")){dir.create("./data")}
+download.file(datasource, destfile = "./data/Dataset.zip", method = "auto", mode= "wb")
+unzip("./data/Dataset.zip")
+```
+This code:
+* assigns the URL linking to the dataset to an r object (called 'datasource' in this script)
+* tests for and creates, if needed, a data folder into which the dataset will be saved (this is not an essential step but it does help in keeping the original dataset separate from the main working folder)
+* downloads dataset to the data folder using the download.file() function.
    - the parameters used were the 'datasource' object for the download URL, and the destination path to the data folder in the step above
    - as the actions were performed on a windows computer, the method was set to "auto". This should be changed to "curl" for Mac computers.
    - as the downloaded files are binary, the mode was set to "wb"  
-- unzipping the downloaded dataset into the main working memory using the unzip() function.
+- unzips the downloaded dataset into the main working memory using the unzip() function.
    - This step creates a data folder "UCI HAR Dataset" in the working directory
 After the download, a review of the included README.txt file and a visual inspection of the downloaded files using Notepad ++ was done. This helped identify the different files in the dataset and which ones would be required to answer the fulfil the project objectives.
 
 ##### 2. Read data files into memory to create the training and test datasets.
-The script achieves this in four stages:
-* uses the list.files() function to create three temporary objects that list the files and folders in the main data folder, and in the test and training folders.
+Creating the training and test datasets was achieved in two stages:
+* First, the list.files() function was used to create three temporary objects that list the files and folders in the main data folder, and in the test and training folders.
+```r 
+mainfolder <- list.files(path = "./UCI HAR Dataset", full.names = TRUE)
+testfolder <- list.files(path = "./UCI HAR Dataset/test", full.names = TRUE)
+trainfolder <- list.files(path = "./UCI HAR Dataset/train", full.names = TRUE)
+```
    - the two files each have two columns with the first column appearing to be a numbered id column
    - therefore, for both files, only the second column is read to create two character vectors called 'activitylabels' and 'features' respectively.
-* to create the training and test datasets, two similar chunks of code are included. The code for creating the training dataset is copied below. The steps is the code are:
-   - the single column subject data is first read and assigned to a dataframe object. While reading the data, the column is renamed 'subject'.
-   - the 'x' files containing the experiment variable values are read into memory and assigned to named dataframe objects
-   - the single column 'y' files containing the activity values are read into memory and assigned to dataframe objects. While reading the data, the column is renamed 'activity' and the column class specified as 'factor', with levels 1 - 6.
-   - the activity values in the 'y' datasets are assigned descriptive names using the 'activitylabels' vector that was created earlier
-   - the subject, 'y' activity files, and 'x' value files are merged to create the seperate 'test' and 'train' dataframes.
+* Secondly, these lists were used to read the raw data and to create the training and test datasets. The code for creating the test dataset is copied below. A similar section of code was used to create the training dataset. 
 ```r 
 subjecttest <- read.table(testfolder[2], stringsAsFactors = FALSE, col.names = "subject")
 xtest <- read.table(testfolder[3], stringsAsFactors = FALSE, col.names = features)
@@ -65,6 +72,12 @@ levels(ytest$activity) <- activitylabels
 test <- cbind(subjecttest, ytest, xtest)
 rm(subjecttest, xtest, ytest)
 ```
+  In this script,
+   - the single column subject data is first read and assigned to a dataframe object. While reading the data, the variable is renamed 'subject'.
+   - the 'x' files containing the experiment variable values are read into memory and assigned to named dataframe objects
+   - the single column 'y' files containing the activity values are read into memory and assigned to dataframe objects. While reading the data, the variable is renamed 'activity' and the column class specified as 'factor', with levels 1 - 6.
+   - the activity values in the 'y' datasets are assigned descriptive names using the 'activitylabels' vector that was created earlier
+   - the subject, 'y' activity files, and 'x' value files are merged to create the separate 'test' and 'train' dataframes.
 * finally the intermediate files are removed. At the end of this section, two data frames representing the training and test datasets remain.
 
 ##### 3. Merge the training and test datasets into one dataset
@@ -95,6 +108,9 @@ All the remaining intermediate datasets and objects are removed and only the fin
 
 ##### 6. Save the tidy data set
 The final line of the run_analysis.R script uses the write.table() function to save the final dataset into the working directory.
+```r 
+write.table(avgtraintest, file = "avgHARtidy.txt", row.name = FALSE)
+```
 This final dataset consists of 180 observations of 68 variables.
 
 ### Discussion

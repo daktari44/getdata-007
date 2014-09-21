@@ -47,7 +47,7 @@ avgtraintest <- subtt %>%
       summarise_each(funs(mean))
 
 ## 5. edit the variable names
-amend <- names(avgtraintest)[3:38]
+amend <- names(avgtraintest)[3:68]
 amend <- gsub("BodyBody", "body", amend)
 amend <- gsub("Acc", "accelerometer", amend)
 amend <- gsub("Gyro", "gyroscope", amend)
