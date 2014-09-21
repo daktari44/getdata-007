@@ -2,14 +2,11 @@
 ## *NB: This analysis was performed on a Windows 7 64-bit comp[uter using RStudio Version 0.98.977 with R version 3.1.1.* 
 
 
-## 1. Download and unzip the dataset into the working directory
+## 1. Download and unzip the dataset into the current working directory
 datasource <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip "
 if(!file.exists("./data")){dir.create("./data")}
 download.file(datasource, destfile = "./data/Dataset.zip", method = "auto", mode= "wb")
-
-unzip("./data/Dataset.zip")            ## This step creates a data folder "UCI HAR Dataset" 
-                                       ## in your working directory
-
+unzip("./data/Dataset.zip")            
 
 ## 2. Read the data files into meomory to create the training and test datasets
 
