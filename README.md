@@ -41,6 +41,7 @@ datasource <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUC
 if(!file.exists("./data")){dir.create("./data")}
 download.file(datasource, destfile = "./data/Dataset.zip", method = "auto", mode= "wb")
 unzip("./data/Dataset.zip")
+rm(datasource)
 ```
 This code:
 * assigns the URL linking to the dataset to an r object (called 'datasource' in this script)

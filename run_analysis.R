@@ -1,12 +1,13 @@
 ## Getting and Cleaning Data: Course Project
-## *NB: This analysis was performed on a Windows 7 64-bit comp[uter using RStudio Version 0.98.977 with R version 3.1.1.* 
+## *NB: This analysis was performed on a Windows 7 64-bit computer using RStudio Version 0.98.977 with R version 3.1.1.* 
 
 
 ## 1. Download and unzip the dataset into the current working directory
 datasource <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip "
 if(!file.exists("./data")){dir.create("./data")}
 download.file(datasource, destfile = "./data/Dataset.zip", method = "auto", mode= "wb")
-unzip("./data/Dataset.zip")            
+unzip("./data/Dataset.zip") 
+rm(datasource)
 
 ## 2. Read the data files into meomory to create the training and test datasets
 
@@ -60,7 +61,7 @@ amend <- sub("f", "frequency", amend)
 amend[c(1:19, 34:36)] <- sub("t", "time", amend[c(1:19, 34:36)])
 amend <- paste0("avg", amend)
 
-colnames(avgtraintest[3:68]) <- amend
+colnames(avgtraintest)[3:68] <- amend
 rm(amend, traintest, subtt)
 
 ## 6. save the tidy data file to the working directory
